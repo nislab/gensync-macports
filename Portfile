@@ -1,7 +1,7 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
 
 PortSystem              1.0
-
+name                    gensync
 PortGroup               cmake 1.1
 PortGroup               github 1.0
 PortGroup               legacysupport 1.1
@@ -10,10 +10,9 @@ PortGroup               legacysupport 1.1
 legacysupport.newest_darwin_requires_legacy 10
 compiler.cxx_standard   2011
 
-github.setup            nislab gensync-macports 2.0.4 v
+github.setup            nislab gensync-macports 2.0.5 v
 revision                0
 
-name                    gensync
 categories              net devel
 license                 GPL-3
 maintainers             {@trachten bu.edu:trachten} openmaintainer
@@ -40,5 +39,3 @@ post-destroot {
     xinstall -m 0644 ${worksrcpath}/CITATION.cff \
                      ${destroot}${prefix}/share/doc/${name}
 }
-
-
