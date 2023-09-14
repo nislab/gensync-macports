@@ -7,7 +7,6 @@ set(CMAKE_CXX_STANDARD 11)
 add_definitions(-DRECORD=".gensync")
 
 include(CTest)
-include(GNUInstallDirs)
 
 # include Apache Data Sketches as a header-only library
 include_directories(gensync-core/incubator-datasketches-cpp/common/include
@@ -121,13 +120,12 @@ set(HEADERS
         ${SYNC_BENCH_INC}/FromFileGen.h)
 
 include_directories(gensync-core/include)
-# Check if the "includedir" variable is already set
 
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
         set(includedir "/usr/local")
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
         if(NOT DEFINED includedir)
-                set(includedir "/opt/local" CACHE PATH "Path to the include directory")
+                set(includedir "/opt/local")
         endif()
 endif()
 
@@ -137,6 +135,9 @@ include_directories(${includedir}/include)
 link_directories(${includedir}/lib)
 link_directories(${includedir}/lib64)
 
+set(CMAKE_INSTALL_INCLUDEDIR ${includedir}/include)
+set(CMAKE_INSTALL_LIBDIR ${includedir}/lib)
+
 include_directories(${CMAKE_INSTALL_INCLUDEDIR})
 link_directories(${CMAKE_INSTALL_LIBDIR})
 
@@ -144,6 +145,9 @@ link_directories(${CMAKE_INSTALL_LIBDIR})
 add_library(gensync STATIC ${SOURCE_FILES} ${HEADERS})
 target_include_directories(gensync PRIVATE ${CMAKE_SOURCE_DIR}/gensync-core/include)
 TARGET_LINK_LIBRARIES(gensync ntl cppunit pthread gmp)
+
+message(STATUS "CMAKE_INSTALL_INCLUDEDIR is set to : ${CMAKE_INSTALL_INCLUDEDIR}")
+message(STATUS "CMAKE_INSTALL_LIBDIR is set to : ${CMAKE_INSTALL_LIBDIR}")
 
 install(CODE "FILE(REMOVE_RECURSE ${CMAKE_INSTALL_INCLUDEDIR}/gensync)") #Remove the existing GenSync library data and reinstall
 install(CODE "FILE(REMOVE_RECURSE ${CMAKE_INSTALL_LIBDIR}/libgensync.a)") #Remove the existing GenSync library data and reinstall
