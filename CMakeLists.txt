@@ -124,7 +124,9 @@ include_directories(gensync-core/include)
 # check the system architecture and set includedir to the corresponding path
 
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
-        set(includedir "/usr/local")
+        if(NOT DEFINED includedir)
+                set(includedir "/usr/local")
+        endif()
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
         if(NOT DEFINED includedir)
                 set(includedir "/opt/local")
