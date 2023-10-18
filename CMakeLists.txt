@@ -122,7 +122,9 @@ set(HEADERS
 include_directories(gensync-core/include)
 
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
-        set(includedir "/usr/local")
+        if(NOT DEFINED includedir)
+                set(includedir "/usr/local")
+        endif()
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
         if(NOT DEFINED includedir)
                 set(includedir "/opt/local")
