@@ -24,30 +24,12 @@ The current version is 2.0.4
 <a name="Examples"></a>
 ## Examples
 
-Here is a simple example of GenSync in action.  It can be compiled as follows, with `/opt/local` replaced by your MacPorts directory, or if on Linux replaced by your libraries directory:
+Here are examples of GenSync in action.  It can be compiled as follows, with `/opt/local` replaced by your MacPorts directory, or if on Linux replaced by your libraries directory:
 
 ### TryMe.cpp
 This program launches two processes, connected by a network socket:
 * The first process (host 1) contains a set with elements 'a', 'b', and 'c'.
 * The second process (host 2) contains a set of elements 'b' and 'd'.
-
-#### Compilation
-On MacOS, the program can be compiled with
-```shell
-$ g++ -I/opt/local/include -L/opt/local/lib -std=c++11 TryMe.cpp -lgensync -lntl -o tryme
-$ ./tryme
-```
-On Linux, the program can be compiled with
-```shell
-$ g++ -I/usr/local/include -L/usr/local/lib -std=c++11 TryMe.cpp -lgensync -lntl -o tryme
-$ ./tryme
-```
-#### Output
-The output from the program shows both hosts with the same sets (note that the order of elements within a set does not matter):
-```
-host 1 now has a b c d 
-host 2 now has b d c a 
-```
 
 #### Code
 ```cpp
@@ -100,8 +82,28 @@ int main() {
   }
 ```
 
+#### Compilation
+On MacOS, the program can be compiled with
+```shell
+g++ -I/opt/local/include -L/opt/local/lib -std=c++11 TryMe.cpp -lgensync -lntl -o tryme
+./tryme
+```
+On Linux, the program can be compiled with
+```shell
+g++ -I/usr/local/include -L/usr/local/lib -std=c++11 TryMe.cpp -lgensync -lntl -o tryme
+./tryme
+```
+#### Output
+The output from the program shows both hosts with the same sets (note that the order of elements within a set does not matter):
+```
+host 1 now has a b c d 
+host 2 now has b d c a 
+```
+
 ### TryMe2.cpp
 A more complicated example allows the user to select various synchronization parameters from the command-line.
+
+#### Code
 ```cpp
 #include <iostream>
 #include <GenSync/Syncs/GenSync.h>
@@ -180,22 +182,22 @@ int main(int argc, char *argv[]) {
 ```
 On MacOS, to compile use:
 ```shell
-$ g++ -I/opt/local/include -L/opt/local/lib -std=c++11 tryme2.cpp -lgensync -lntl -o tryme2
+g++ -I/opt/local/include -L/opt/local/lib -std=c++11 tryme2.cpp -lgensync -lntl -o tryme2
 ```
 On Linux, to compile use:
 ```shell
-$ g++ -I/usr/local/include -L/usr/local/lib -std=c++11 tryme2.cpp -lgensync -lntl -o tryme2
+g++ -I/usr/local/include -L/usr/local/lib -std=c++11 tryme2.cpp -lgensync -lntl -o tryme2
 ```
-To run, open two terminals.  In one issue the command:
+To run, open two terminals. In one issue the command:
 ```
-$ ./tryme2 server CPISync
+./tryme2 server CPISync
 connecting on port 8001...
 sync succeeded.
 ```
 
 In a second, issue the command:
 ```angular2html
-$ ./tryme2 client CPISync
+./tryme2 client CPISync
 listening on port 8001...
 sync succeeded.
 ```
