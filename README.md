@@ -394,18 +394,18 @@ Elements of the GenSync project code have been worked on, at various points, by:
     * For issues with macports installation, refer to the default [README](https://github.com/nislab/gensync-core/blob/master/README.md)
 * _Dependencies:_
     * [NTL](http://www.shoup.net/ntl/) - A library for doing Number Theory (>9.5)
-        - ptheads - may be required depending on how NTL is configured
-        - gmp - may be required depending on how NTL is configured
+        - pthreads - may be required depending on how NTL is configured
+        - [GMP](https://gmplib.org) - may be required depending on how NTL is configured
     * [cppunit](http://cppunit.sourceforge.net/doc/cvs/index.html) - For testing
     * [cmake](https://cmake.org) - For building
 * _Source-based Compilation:_
 ```
-$ git clone --recurse-submodules git@github.com:nislab/gensync-lib.git
-$ cd gensync-lib
-$ cmake -B build
-$ cmake --build build
+git clone --recurse-submodules https://github.com/nislab/gensync-lib.git
+cd gensync-lib
+cmake -B build
+cmake --build build
+cmake install
 ```
-
 
 # Acknowledgments:
 * NSF
