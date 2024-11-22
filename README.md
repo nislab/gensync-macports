@@ -24,6 +24,8 @@ The current version is 2.1.1
     - [Contributors](#Contributors)
 
 ------------------------------
+<a name="UseInstructions"></a>
+## Usage
 
 <a name="Installation"></a>
 ### Installation:
@@ -55,7 +57,7 @@ This will produce the library `libgensync.a` in the `build` directory.
 
 
 <a name="Examples"></a>
-## Example 1 - TryMe.cpp
+### Example 1 - TryMe.cpp
 This repository includes a file `TryMe.cpp` that demonstrates the Gensync library in action.
 
 If the Gensync library and header files are placed within the default paths, the code can be
